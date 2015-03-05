@@ -1,0 +1,2 @@
+C:\Users\USER\documents\visual studio 2012\Projects\Get_Enmergency_info\Get_Enmergency_info\bin\Debug\ServiceConfiguration.cscfg
+C:\Users\USER\documents\visual studio 2012\Projects\Get_Enmergency_info\Get_Enmergency_info\bin\Debug\ServiceDefinition.csdef

@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ProtectAzure" Class="Protect_DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=fgvfiud62f.database.windows.net;Initial Catalog=ProtectAzure;User ID=Nick" SettingsObjectName="WorkerRole1.Properties.Settings" SettingsPropertyName="ProtectAzureConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.AlarmInfo" Member="AlarmInfo">
+    <Type Name="AlarmInfo">
+      <Column Name="AlarmID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Longitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AlarmType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AlarmTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Alarmmessage" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="UserInfo_AlarmInfo" Member="UserInfo" ThisKey="UserID" OtherKey="UserID" Type="UserInfo" IsForeignKey="true" />
+      <Association Name="AlarmType_AlarmInfo" Member="AlarmType1" ThisKey="AlarmType" OtherKey="AlarmTypeID" Type="AlarmType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserInfo" Member="UserInfo">
+    <Type Name="UserInfo">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="PhoneURL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserLongitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="UserLatitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PhoneType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EmailAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LocationAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="UserInfo_AlarmInfo" Member="AlarmInfo" ThisKey="UserID" OtherKey="UserID" Type="AlarmInfo" />
+      <Association Name="UserInfo_GroupMapping" Member="GroupMapping" ThisKey="UserID" OtherKey="UserID" Type="GroupMapping" />
+      <Association Name="UserInfo_MessageManage" Member="MessageManage" ThisKey="UserID" OtherKey="MessageUserID" Type="MessageManage" />
+      <Association Name="UserInfo_PhoneNotification" Member="PhoneNotification" ThisKey="UserID" OtherKey="UserID" Type="PhoneNotification" />
+      <Association Name="UserInfo_UserGroup" Member="UserGroup" ThisKey="UserID" OtherKey="UserID" Type="UserGroup" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AlarmType" Member="AlarmType">
+    <Type Name="AlarmType">
+      <Column Name="AlarmTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AlarmName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="AlarmType_AlarmInfo" Member="AlarmInfo" ThisKey="AlarmTypeID" OtherKey="AlarmType" Type="AlarmInfo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DisasterDB" Member="DisasterDB">
+    <Type Name="DisasterDB">
+      <Column Name="DisasterID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DisasterDataID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DisasterTitle" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="DisasterUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DisasterSummary" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GroupMapping" Member="GroupMapping">
+    <Type Name="GroupMapping">
+      <Column Name="GroupMappingID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="UserInfo_GroupMapping" Member="UserInfo" ThisKey="UserID" OtherKey="UserID" Type="UserInfo" IsForeignKey="true" />
+      <Association Name="UserGroup_GroupMapping" Member="UserGroup" ThisKey="GroupID" OtherKey="UserGroupID" Type="UserGroup" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InfoTypeDB" Member="InfoTypeDB">
+    <Type Name="InfoTypeDB">
+      <Column Name="InfoTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="InfoName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MachineInfo" Member="MachineInfo">
+    <Type Name="MachineInfo">
+      <Column Name="MachineID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Latitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MessageManage" Member="MessageManage">
+    <Type Name="MessageManage">
+      <Column Name="MessageID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MessageTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MessageContect" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MessageMark" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MessageLongitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MessageLatitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MessagePriolotyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MessageUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="UserInfo_MessageManage" Member="UserInfo" ThisKey="MessageUserID" OtherKey="UserID" Type="UserInfo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhoneNotification" Member="PhoneNotification">
+    <Type Name="PhoneNotification">
+      <Column Name="NotificationID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PhoneType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NotificationUrl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ServerKeyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="UserInfo_PhoneNotification" Member="UserInfo" ThisKey="UserID" OtherKey="UserID" Type="UserInfo" IsForeignKey="true" />
+      <Association Name="ServerKey_PhoneNotification" Member="ServerKey" ThisKey="ServerKeyID" OtherKey="ServerKeyID" Type="ServerKey" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ServerKey" Member="ServerKey">
+    <Type Name="ServerKey">
+      <Column Name="ServerKeyID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ServerKeyString" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ServerType" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Association Name="ServerKey_PhoneNotification" Member="PhoneNotification" ThisKey="ServerKeyID" OtherKey="ServerKeyID" Type="PhoneNotification" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SiteDB" Member="SiteDB">
+    <Type Name="SiteDB">
+      <Column Name="SiteID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SiteType" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SiteName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SiteAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SiteLatitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SiteLongitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SiteDescription" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SitePhone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TaiwanLocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TaiwanLocation_SiteDB" Member="TaiwanLocation" ThisKey="TaiwanLocationID" OtherKey="TaiwanLocationID" Type="TaiwanLocation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TaiwanLocation" Member="TaiwanLocation">
+    <Type Name="TaiwanLocation">
+      <Column Name="TaiwanLocationID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LocationName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="TaiwanLocation_SiteDB" Member="SiteDB" ThisKey="TaiwanLocationID" OtherKey="TaiwanLocationID" Type="SiteDB" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserGroup" Member="UserGroup">
+    <Type Name="UserGroup">
+      <Column Name="UserGroupID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserGroupName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="UserGroup_GroupMapping" Member="GroupMapping" ThisKey="UserGroupID" OtherKey="GroupID" Type="GroupMapping" />
+      <Association Name="UserInfo_UserGroup" Member="UserInfo" ThisKey="UserID" OtherKey="UserID" Type="UserInfo" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
