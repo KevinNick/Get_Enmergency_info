@@ -23,7 +23,7 @@ namespace WorkerRole1
             
             while (true)
             {
-                //Thread.Sleep(10000);
+                Thread.Sleep(10000);
                 //Trace.TraceInformation("Working", "Information");
                 Get_opendata_info(1);
                 Get_opendata_info(2);
@@ -65,6 +65,7 @@ namespace WorkerRole1
 
         public void Get_machine_info()
         {
+            Protect_DBDataContext DB = new Protect_DBDataContext();
             string webAddr = "http://sctek.cloudapp.net/Service1.svc/ReturnAirData";
             HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(webAddr);
             HttpWebResponse resp = (HttpWebResponse)httpWebRequest.GetResponse();
@@ -88,12 +89,11 @@ namespace WorkerRole1
             {
                 naturalGas = int.Parse(result.NaturalGas);
             }
-            if (    smoke > 500
-                ||  liquidgas > 500
-                ||  naturalGas > 500)
-            {
-                Protect_DBDataContext DB = new Protect_DBDataContext();
-                MachineInfo machine = DB.MachineInfo.First();
+            MachineInfo machine = DB.MachineInfo.First();
+            if (    smoke > machine.Smoke
+                ||  liquidgas > machine.LGAS
+                ||  naturalGas > machine.NGAS)
+            {                
                 webAddr = "http://protecttw.cloudapp.net/Service1.svc/machine_alarm/" + machine.Latitude + "/" + machine.Longitude + "/" + result.Liquidgas + "/" + Guid.NewGuid();
                 httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(webAddr);
                 HttpWebResponse response = (HttpWebResponse)httpWebRequest.GetResponse();

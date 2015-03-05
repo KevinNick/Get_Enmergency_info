@@ -30,12 +30,12 @@ namespace WorkerRole1
 		
     #region 擴充性方法定義
     partial void OnCreated();
-    partial void InsertAlarmInfo(AlarmInfo instance);
-    partial void UpdateAlarmInfo(AlarmInfo instance);
-    partial void DeleteAlarmInfo(AlarmInfo instance);
     partial void InsertUserInfo(UserInfo instance);
     partial void UpdateUserInfo(UserInfo instance);
     partial void DeleteUserInfo(UserInfo instance);
+    partial void InsertAlarmInfo(AlarmInfo instance);
+    partial void UpdateAlarmInfo(AlarmInfo instance);
+    partial void DeleteAlarmInfo(AlarmInfo instance);
     partial void InsertAlarmType(AlarmType instance);
     partial void UpdateAlarmType(AlarmType instance);
     partial void DeleteAlarmType(AlarmType instance);
@@ -101,19 +101,19 @@ namespace WorkerRole1
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<AlarmInfo> AlarmInfo
-		{
-			get
-			{
-				return this.GetTable<AlarmInfo>();
-			}
-		}
-		
 		public System.Data.Linq.Table<UserInfo> UserInfo
 		{
 			get
 			{
 				return this.GetTable<UserInfo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AlarmInfo> AlarmInfo
+		{
+			get
+			{
+				return this.GetTable<AlarmInfo>();
 			}
 		}
 		
@@ -202,294 +202,6 @@ namespace WorkerRole1
 			get
 			{
 				return this.GetTable<UserGroup>();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AlarmInfo")]
-	public partial class AlarmInfo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _AlarmID;
-		
-		private System.Nullable<double> _Longitude;
-		
-		private System.Nullable<double> _Latitude;
-		
-		private System.Nullable<int> _UserID;
-		
-		private System.Nullable<int> _AlarmType;
-		
-		private System.Nullable<System.DateTime> _AlarmTime;
-		
-		private string _Alarmmessage;
-		
-		private EntityRef<UserInfo> _UserInfo;
-		
-		private EntityRef<AlarmType> _AlarmType1;
-		
-    #region 擴充性方法定義
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnAlarmIDChanging(int value);
-    partial void OnAlarmIDChanged();
-    partial void OnLongitudeChanging(System.Nullable<double> value);
-    partial void OnLongitudeChanged();
-    partial void OnLatitudeChanging(System.Nullable<double> value);
-    partial void OnLatitudeChanged();
-    partial void OnUserIDChanging(System.Nullable<int> value);
-    partial void OnUserIDChanged();
-    partial void OnAlarmTypeChanging(System.Nullable<int> value);
-    partial void OnAlarmTypeChanged();
-    partial void OnAlarmTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnAlarmTimeChanged();
-    partial void OnAlarmmessageChanging(string value);
-    partial void OnAlarmmessageChanged();
-    #endregion
-		
-		public AlarmInfo()
-		{
-			this._UserInfo = default(EntityRef<UserInfo>);
-			this._AlarmType1 = default(EntityRef<AlarmType>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AlarmID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int AlarmID
-		{
-			get
-			{
-				return this._AlarmID;
-			}
-			set
-			{
-				if ((this._AlarmID != value))
-				{
-					this.OnAlarmIDChanging(value);
-					this.SendPropertyChanging();
-					this._AlarmID = value;
-					this.SendPropertyChanged("AlarmID");
-					this.OnAlarmIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Longitude", DbType="Float")]
-		public System.Nullable<double> Longitude
-		{
-			get
-			{
-				return this._Longitude;
-			}
-			set
-			{
-				if ((this._Longitude != value))
-				{
-					this.OnLongitudeChanging(value);
-					this.SendPropertyChanging();
-					this._Longitude = value;
-					this.SendPropertyChanged("Longitude");
-					this.OnLongitudeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Latitude", DbType="Float")]
-		public System.Nullable<double> Latitude
-		{
-			get
-			{
-				return this._Latitude;
-			}
-			set
-			{
-				if ((this._Latitude != value))
-				{
-					this.OnLatitudeChanging(value);
-					this.SendPropertyChanging();
-					this._Latitude = value;
-					this.SendPropertyChanged("Latitude");
-					this.OnLatitudeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int")]
-		public System.Nullable<int> UserID
-		{
-			get
-			{
-				return this._UserID;
-			}
-			set
-			{
-				if ((this._UserID != value))
-				{
-					if (this._UserInfo.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._UserID = value;
-					this.SendPropertyChanged("UserID");
-					this.OnUserIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AlarmType", DbType="Int")]
-		public System.Nullable<int> AlarmType
-		{
-			get
-			{
-				return this._AlarmType;
-			}
-			set
-			{
-				if ((this._AlarmType != value))
-				{
-					if (this._AlarmType1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnAlarmTypeChanging(value);
-					this.SendPropertyChanging();
-					this._AlarmType = value;
-					this.SendPropertyChanged("AlarmType");
-					this.OnAlarmTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AlarmTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> AlarmTime
-		{
-			get
-			{
-				return this._AlarmTime;
-			}
-			set
-			{
-				if ((this._AlarmTime != value))
-				{
-					this.OnAlarmTimeChanging(value);
-					this.SendPropertyChanging();
-					this._AlarmTime = value;
-					this.SendPropertyChanged("AlarmTime");
-					this.OnAlarmTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Alarmmessage", DbType="NVarChar(MAX)")]
-		public string Alarmmessage
-		{
-			get
-			{
-				return this._Alarmmessage;
-			}
-			set
-			{
-				if ((this._Alarmmessage != value))
-				{
-					this.OnAlarmmessageChanging(value);
-					this.SendPropertyChanging();
-					this._Alarmmessage = value;
-					this.SendPropertyChanged("Alarmmessage");
-					this.OnAlarmmessageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserInfo_AlarmInfo", Storage="_UserInfo", ThisKey="UserID", OtherKey="UserID", IsForeignKey=true)]
-		public UserInfo UserInfo
-		{
-			get
-			{
-				return this._UserInfo.Entity;
-			}
-			set
-			{
-				UserInfo previousValue = this._UserInfo.Entity;
-				if (((previousValue != value) 
-							|| (this._UserInfo.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._UserInfo.Entity = null;
-						previousValue.AlarmInfo.Remove(this);
-					}
-					this._UserInfo.Entity = value;
-					if ((value != null))
-					{
-						value.AlarmInfo.Add(this);
-						this._UserID = value.UserID;
-					}
-					else
-					{
-						this._UserID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("UserInfo");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AlarmType_AlarmInfo", Storage="_AlarmType1", ThisKey="AlarmType", OtherKey="AlarmTypeID", IsForeignKey=true)]
-		public AlarmType AlarmType1
-		{
-			get
-			{
-				return this._AlarmType1.Entity;
-			}
-			set
-			{
-				AlarmType previousValue = this._AlarmType1.Entity;
-				if (((previousValue != value) 
-							|| (this._AlarmType1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._AlarmType1.Entity = null;
-						previousValue.AlarmInfo.Remove(this);
-					}
-					this._AlarmType1.Entity = value;
-					if ((value != null))
-					{
-						value.AlarmInfo.Add(this);
-						this._AlarmType = value.AlarmTypeID;
-					}
-					else
-					{
-						this._AlarmType = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("AlarmType1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -909,6 +621,294 @@ namespace WorkerRole1
 		{
 			this.SendPropertyChanging();
 			entity.UserInfo = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AlarmInfo")]
+	public partial class AlarmInfo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _AlarmID;
+		
+		private System.Nullable<double> _Longitude;
+		
+		private System.Nullable<double> _Latitude;
+		
+		private System.Nullable<int> _UserID;
+		
+		private System.Nullable<int> _AlarmType;
+		
+		private System.Nullable<System.DateTime> _AlarmTime;
+		
+		private string _Alarmmessage;
+		
+		private EntityRef<UserInfo> _UserInfo;
+		
+		private EntityRef<AlarmType> _AlarmType1;
+		
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnAlarmIDChanging(int value);
+    partial void OnAlarmIDChanged();
+    partial void OnLongitudeChanging(System.Nullable<double> value);
+    partial void OnLongitudeChanged();
+    partial void OnLatitudeChanging(System.Nullable<double> value);
+    partial void OnLatitudeChanged();
+    partial void OnUserIDChanging(System.Nullable<int> value);
+    partial void OnUserIDChanged();
+    partial void OnAlarmTypeChanging(System.Nullable<int> value);
+    partial void OnAlarmTypeChanged();
+    partial void OnAlarmTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnAlarmTimeChanged();
+    partial void OnAlarmmessageChanging(string value);
+    partial void OnAlarmmessageChanged();
+    #endregion
+		
+		public AlarmInfo()
+		{
+			this._UserInfo = default(EntityRef<UserInfo>);
+			this._AlarmType1 = default(EntityRef<AlarmType>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AlarmID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int AlarmID
+		{
+			get
+			{
+				return this._AlarmID;
+			}
+			set
+			{
+				if ((this._AlarmID != value))
+				{
+					this.OnAlarmIDChanging(value);
+					this.SendPropertyChanging();
+					this._AlarmID = value;
+					this.SendPropertyChanged("AlarmID");
+					this.OnAlarmIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Longitude", DbType="Float")]
+		public System.Nullable<double> Longitude
+		{
+			get
+			{
+				return this._Longitude;
+			}
+			set
+			{
+				if ((this._Longitude != value))
+				{
+					this.OnLongitudeChanging(value);
+					this.SendPropertyChanging();
+					this._Longitude = value;
+					this.SendPropertyChanged("Longitude");
+					this.OnLongitudeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Latitude", DbType="Float")]
+		public System.Nullable<double> Latitude
+		{
+			get
+			{
+				return this._Latitude;
+			}
+			set
+			{
+				if ((this._Latitude != value))
+				{
+					this.OnLatitudeChanging(value);
+					this.SendPropertyChanging();
+					this._Latitude = value;
+					this.SendPropertyChanged("Latitude");
+					this.OnLatitudeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int")]
+		public System.Nullable<int> UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					if (this._UserInfo.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AlarmType", DbType="Int")]
+		public System.Nullable<int> AlarmType
+		{
+			get
+			{
+				return this._AlarmType;
+			}
+			set
+			{
+				if ((this._AlarmType != value))
+				{
+					if (this._AlarmType1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnAlarmTypeChanging(value);
+					this.SendPropertyChanging();
+					this._AlarmType = value;
+					this.SendPropertyChanged("AlarmType");
+					this.OnAlarmTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AlarmTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> AlarmTime
+		{
+			get
+			{
+				return this._AlarmTime;
+			}
+			set
+			{
+				if ((this._AlarmTime != value))
+				{
+					this.OnAlarmTimeChanging(value);
+					this.SendPropertyChanging();
+					this._AlarmTime = value;
+					this.SendPropertyChanged("AlarmTime");
+					this.OnAlarmTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Alarmmessage", DbType="NVarChar(MAX)")]
+		public string Alarmmessage
+		{
+			get
+			{
+				return this._Alarmmessage;
+			}
+			set
+			{
+				if ((this._Alarmmessage != value))
+				{
+					this.OnAlarmmessageChanging(value);
+					this.SendPropertyChanging();
+					this._Alarmmessage = value;
+					this.SendPropertyChanged("Alarmmessage");
+					this.OnAlarmmessageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserInfo_AlarmInfo", Storage="_UserInfo", ThisKey="UserID", OtherKey="UserID", IsForeignKey=true)]
+		public UserInfo UserInfo
+		{
+			get
+			{
+				return this._UserInfo.Entity;
+			}
+			set
+			{
+				UserInfo previousValue = this._UserInfo.Entity;
+				if (((previousValue != value) 
+							|| (this._UserInfo.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._UserInfo.Entity = null;
+						previousValue.AlarmInfo.Remove(this);
+					}
+					this._UserInfo.Entity = value;
+					if ((value != null))
+					{
+						value.AlarmInfo.Add(this);
+						this._UserID = value.UserID;
+					}
+					else
+					{
+						this._UserID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("UserInfo");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AlarmType_AlarmInfo", Storage="_AlarmType1", ThisKey="AlarmType", OtherKey="AlarmTypeID", IsForeignKey=true)]
+		public AlarmType AlarmType1
+		{
+			get
+			{
+				return this._AlarmType1.Entity;
+			}
+			set
+			{
+				AlarmType previousValue = this._AlarmType1.Entity;
+				if (((previousValue != value) 
+							|| (this._AlarmType1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AlarmType1.Entity = null;
+						previousValue.AlarmInfo.Remove(this);
+					}
+					this._AlarmType1.Entity = value;
+					if ((value != null))
+					{
+						value.AlarmInfo.Add(this);
+						this._AlarmType = value.AlarmTypeID;
+					}
+					else
+					{
+						this._AlarmType = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("AlarmType1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -1474,6 +1474,14 @@ namespace WorkerRole1
 		
 		private System.Nullable<double> _Longitude;
 		
+		private System.Nullable<int> _CO;
+		
+		private System.Nullable<int> _LGAS;
+		
+		private System.Nullable<int> _NGAS;
+		
+		private System.Nullable<int> _Smoke;
+		
     #region 擴充性方法定義
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1484,6 +1492,14 @@ namespace WorkerRole1
     partial void OnLatitudeChanged();
     partial void OnLongitudeChanging(System.Nullable<double> value);
     partial void OnLongitudeChanged();
+    partial void OnCOChanging(System.Nullable<int> value);
+    partial void OnCOChanged();
+    partial void OnLGASChanging(System.Nullable<int> value);
+    partial void OnLGASChanged();
+    partial void OnNGASChanging(System.Nullable<int> value);
+    partial void OnNGASChanged();
+    partial void OnSmokeChanging(System.Nullable<int> value);
+    partial void OnSmokeChanged();
     #endregion
 		
 		public MachineInfo()
@@ -1547,6 +1563,86 @@ namespace WorkerRole1
 					this._Longitude = value;
 					this.SendPropertyChanged("Longitude");
 					this.OnLongitudeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CO", DbType="Int")]
+		public System.Nullable<int> CO
+		{
+			get
+			{
+				return this._CO;
+			}
+			set
+			{
+				if ((this._CO != value))
+				{
+					this.OnCOChanging(value);
+					this.SendPropertyChanging();
+					this._CO = value;
+					this.SendPropertyChanged("CO");
+					this.OnCOChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LGAS", DbType="Int")]
+		public System.Nullable<int> LGAS
+		{
+			get
+			{
+				return this._LGAS;
+			}
+			set
+			{
+				if ((this._LGAS != value))
+				{
+					this.OnLGASChanging(value);
+					this.SendPropertyChanging();
+					this._LGAS = value;
+					this.SendPropertyChanged("LGAS");
+					this.OnLGASChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NGAS", DbType="Int")]
+		public System.Nullable<int> NGAS
+		{
+			get
+			{
+				return this._NGAS;
+			}
+			set
+			{
+				if ((this._NGAS != value))
+				{
+					this.OnNGASChanging(value);
+					this.SendPropertyChanging();
+					this._NGAS = value;
+					this.SendPropertyChanged("NGAS");
+					this.OnNGASChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Smoke", DbType="Int")]
+		public System.Nullable<int> Smoke
+		{
+			get
+			{
+				return this._Smoke;
+			}
+			set
+			{
+				if ((this._Smoke != value))
+				{
+					this.OnSmokeChanging(value);
+					this.SendPropertyChanging();
+					this._Smoke = value;
+					this.SendPropertyChanged("Smoke");
+					this.OnSmokeChanged();
 				}
 			}
 		}

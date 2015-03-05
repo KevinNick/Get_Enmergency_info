@@ -1,18 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ProtectAzure" Class="Protect_DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=fgvfiud62f.database.windows.net;Initial Catalog=ProtectAzure;User ID=Nick" SettingsObjectName="WorkerRole1.Properties.Settings" SettingsPropertyName="ProtectAzureConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.AlarmInfo" Member="AlarmInfo">
-    <Type Name="AlarmInfo">
-      <Column Name="AlarmID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Longitude" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="Latitude" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="AlarmType" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="AlarmTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Alarmmessage" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="UserInfo_AlarmInfo" Member="UserInfo" ThisKey="UserID" OtherKey="UserID" Type="UserInfo" IsForeignKey="true" />
-      <Association Name="AlarmType_AlarmInfo" Member="AlarmType1" ThisKey="AlarmType" OtherKey="AlarmTypeID" Type="AlarmType" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.UserInfo" Member="UserInfo">
     <Type Name="UserInfo">
       <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -30,6 +17,19 @@
       <Association Name="UserInfo_MessageManage" Member="MessageManage" ThisKey="UserID" OtherKey="MessageUserID" Type="MessageManage" />
       <Association Name="UserInfo_PhoneNotification" Member="PhoneNotification" ThisKey="UserID" OtherKey="UserID" Type="PhoneNotification" />
       <Association Name="UserInfo_UserGroup" Member="UserGroup" ThisKey="UserID" OtherKey="UserID" Type="UserGroup" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AlarmInfo" Member="AlarmInfo">
+    <Type Name="AlarmInfo">
+      <Column Name="AlarmID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Longitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AlarmType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AlarmTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Alarmmessage" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="UserInfo_AlarmInfo" Member="UserInfo" ThisKey="UserID" OtherKey="UserID" Type="UserInfo" IsForeignKey="true" />
+      <Association Name="AlarmType_AlarmInfo" Member="AlarmType1" ThisKey="AlarmType" OtherKey="AlarmTypeID" Type="AlarmType" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.AlarmType" Member="AlarmType">
@@ -68,6 +68,10 @@
       <Column Name="MachineID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Latitude" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Longitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LGAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NGAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Smoke" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.MessageManage" Member="MessageManage">

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Get_Enmergency_info" generation="1" functional="0" release="0" Id="a76c101c-b8ec-4f11-9a92-b161d1dfeada" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
+<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Get_Enmergency_info" generation="1" functional="0" release="0" Id="07c1c30a-da53-4c03-8ec2-68360c05865b" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
   <groups>
     <group name="Get_Enmergency_infoGroup" generation="1" functional="0" release="0">
       <settings>
